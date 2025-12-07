@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import '../models/medical_case.dart';
 import 'database_service.dart';
 
 class AiService {
   // 🔴 REPLACE WITH YOUR KEY
-  static const String _apiKey =
-      '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';
+
+  static String groqKey = dotenv.env['GROQ_API_KEY'] ?? '';
+  static final String _apiKey = groqKey;
+
   static const String _baseUrl = 'https://api.groq.com/openai/v1';
 
   static Future<MedicalCase> generateCaseReport(String audioPath) async {

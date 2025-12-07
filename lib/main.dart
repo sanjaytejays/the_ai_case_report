@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'logic/theme_bloc/theme_bloc.dart';
 import 'theme/medical_theme.dart';
 import 'screens/home_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Load .env BEFORE runApp
+  await dotenv.load(fileName: ".env");
   runApp(const MedScribeApp());
 }
 
